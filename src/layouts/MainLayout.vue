@@ -1,5 +1,5 @@
 <template>
-  <v-app class="d-flex flex-row">
+  <v-app class="d-flex flex-row mainCont">
     <SideBar />
     <v-main>
       <v-container class="py-8 px-6" fluid>
@@ -27,4 +27,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.mainCont {
+  background-color: #f5f5f6;
+}
+</style>

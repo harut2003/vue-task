@@ -7,15 +7,24 @@
       </button>
     </div>
     <div class="path">
-      <p>
-        <span>my Transitions </span> > <span>UI/UX DESIGNER </span> >
-        <span>Tasks</span>, <span>transition assets and meetings</span> >
-        <span>fetch meetings</span>
-      </p>
+      <p><span>my Transitions </span> > <span>UI/UX DESIGNER </span></p>
     </div>
-    <h1>Connected to Outlook</h1>
+    <div class="d-flex align-center justify-space-between">
+      <h1>Connected to Outlook</h1>
+      <ToolBar />
+    </div>
   </div>
 </template>
+
+<script>
+import ToolBar from "./ToolBar.vue";
+
+export default {
+  components: {
+    ToolBar,
+  },
+};
+</script>
 
 <style lang="scss">
 .header {

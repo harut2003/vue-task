@@ -1,6 +1,5 @@
 <template>
   <div class="result">
-    <h2>RESULTS (118)</h2>
     <div class="mt-5">
       <v-btn class="white--text result-btn me-3">
         <v-icon class="icon-in-btn" right dark> mdi-check </v-icon>
