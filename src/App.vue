@@ -1,32 +1,33 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+  <div class="app">
+    <component :is="layout"> <router-view /> </component>
   </div>
 </template>
 
+<script>
+import MainLayout from "@/layouts/MainLayout";
+
+export default {
+  name: "App",
+  computed: {
+    layout() {
+      console.log(this.$route);
+      if (this.$route.meta.layout) {
+        return this.$route.meta.layout + "-layout";
+      }
+    },
+  },
+  components: {
+    MainLayout,
+  },
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.v-application--wrap {
+  flex-direction: row;
 }
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+button {
+  border-radius: 10px !important;
 }
 </style>
