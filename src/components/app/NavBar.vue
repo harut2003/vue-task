@@ -3,16 +3,20 @@
     <div class="header">
       <a href="#"> <v-icon>mdi-bell</v-icon> </a>
       <button class="d-flex a">
-        <img src="../../assets/person.png" alt="" width="30" />
+        <img class="prof-pic" src="../../assets/person.jpg" alt="" width="50" />
       </button>
     </div>
     <div class="path">
       <p><span>my Transitions </span> > <span>UI/UX DESIGNER </span></p>
     </div>
-    <div class="d-flex align-center justify-space-between">
-      <h1>Connected to Outlook</h1>
-      <ToolBar />
-    </div>
+    <v-row class="d-flex align-center justify-space-between">
+      <v-col lg="5" md="12">
+        <h1>UI/UX Designer</h1>
+      </v-col>
+      <v-col md="12" lg="7" class="d-flex justify-end">
+        <ToolBar />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -31,6 +35,9 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  .prof-pic {
+    border-radius: 50%;
+  }
   a {
     margin-right: 20px;
   }

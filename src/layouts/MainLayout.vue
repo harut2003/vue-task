@@ -1,11 +1,11 @@
 <template>
-  <v-app class="d-flex flex-row mainCont">
+  <v-app class="d-flex flex-row" id="mainCont">
     <SideBar />
     <v-main>
       <v-container class="py-8 px-6" fluid>
         <NavBar />
         <router-view />
-        <Footer />
+        <!-- <Footer /> -->
       </v-container>
     </v-main>
   </v-app>
@@ -28,7 +28,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mainCont {
+#mainCont {
+  padding-left: 96px;
   background-color: #f5f5f6;
 }
 </style>

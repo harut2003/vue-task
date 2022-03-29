@@ -1,6 +1,6 @@
 <template>
   <div class="Meetings">
-    <MeetingsFilter />
+    <!-- <MeetingsFilter /> -->
     <MeetingsResult />
   </div>
 </template>

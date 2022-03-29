@@ -1,6 +1,6 @@
 <template>
   <div class="toolbar">
-    <nav>
+    <!-- <nav>
       <ul>
         <li><a class="active" href="#home">Overview</a></li>
         <li><a href="#news">activity log</a></li>
@@ -10,35 +10,35 @@
         <li><a href="#contact">assets</a></li>
         <li><a href="#about">Meetings</a></li>
       </ul>
-    </nav>
+    </nav> -->
+    <v-tabs class="tab-container" background-color="white">
+      <v-tab>Overview</v-tab>
+      <v-tab>activity log</v-tab>
+      <v-tab>members</v-tab>
+      <v-tab>Tasks</v-tab>
+      <v-tab>assets</v-tab>
+      <v-tab>Meetings</v-tab>
+    </v-tabs>
   </div>
 </template>
 
 <style lang="scss">
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+.tab-container {
   background-color: white;
   box-shadow: 0px 3px 26px #00000008;
   border-radius: 41px;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-li a:hover {
-  background-color: #111;
+  padding: 15px 0;
+  .v-tab--active {
+    background-color: #2b0f4d;
+    border-radius: 18px;
+    color: white !important;
+    border-style: none;
+  }
+  .v-item-group {
+    padding: 0 20px;
+  }
+  .v-tabs-slider-wrapper {
+    height: 0px !important;
+  }
 }
 </style>

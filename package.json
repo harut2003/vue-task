@@ -9,6 +9,7 @@
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^2.0.6",
     "core-js": "^3.8.3",
+    "node-modules": "^1.0.1",
     "register-service-worker": "^1.7.2",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",

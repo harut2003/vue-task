@@ -11,7 +11,6 @@ export default {
   name: "App",
   computed: {
     layout() {
-      console.log(this.$route);
       if (this.$route.meta.layout) {
         return this.$route.meta.layout + "-layout";
       }
@@ -26,8 +25,5 @@ export default {
 <style lang="scss">
 .v-application--wrap {
   flex-direction: row;
-}
-button {
-  border-radius: 10px !important;
 }
 </style>
