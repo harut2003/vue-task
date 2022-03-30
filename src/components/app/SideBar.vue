@@ -64,8 +64,8 @@ export default {
       drawer: true,
       items: [
         { title: "Home", icon: "mdi-home", to: "/" },
-        { title: "My Account", icon: "mdi-refresh", to: "/meetings" },
-        { title: "Users", icon: "mdi-message-text" },
+        { title: "Transitions", icon: "mdi-refresh", to: "/meetings" },
+        { title: "Support", icon: "mdi-message-text" },
       ],
       mini: true,
     };

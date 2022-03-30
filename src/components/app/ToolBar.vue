@@ -23,6 +23,9 @@
 </template>
 
 <style lang="scss">
+.toolbar {
+  width: 100%;
+}
 .tab-container {
   background-color: white;
   box-shadow: 0px 3px 26px #00000008;
@@ -40,5 +43,10 @@
   .v-tabs-slider-wrapper {
     height: 0px !important;
   }
+}
+.v-tabs:not(.v-tabs--vertical):not(.v-tabs--right)
+  > .v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-slide-group--has-affixes)
+  .v-slide-group__prev {
+  display: none !important;
 }
 </style>

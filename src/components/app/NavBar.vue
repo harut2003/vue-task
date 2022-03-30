@@ -3,7 +3,14 @@
     <div class="header">
       <a href="#"> <v-icon>mdi-bell</v-icon> </a>
       <button class="d-flex a">
-        <img class="prof-pic" src="../../assets/person.jpg" alt="" width="50" />
+        <div class="image-upload" v-if="!url">
+          <label for="file-input">
+            <v-icon class="upload-icon">mdi-upload</v-icon>
+          </label>
+
+          <input id="file-input" @change="previewFiles" type="file" />
+        </div>
+        <img v-if="url" class="prof-pic" :src="url" alt="" width="50" />
       </button>
     </div>
     <div class="path">
@@ -24,6 +31,15 @@
 import ToolBar from "./ToolBar.vue";
 
 export default {
+  data: () => ({
+    url: null,
+  }),
+  methods: {
+    previewFiles(e) {
+      const file = e.target.files[0];
+      this.url = URL.createObjectURL(file);
+    },
+  },
   components: {
     ToolBar,
   },
@@ -31,6 +47,12 @@ export default {
 </script>
 
 <style lang="scss">
+.image-upload > input {
+  display: none;
+}
+.upload-icon {
+  cursor: pointer;
+}
 .header {
   display: flex;
   justify-content: flex-end;
