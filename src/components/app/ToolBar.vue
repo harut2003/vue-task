@@ -12,15 +12,22 @@
       </ul>
     </nav> -->
     <v-tabs class="tab-container" background-color="white">
+        
       <v-tab>Overview</v-tab>
       <v-tab>activity log</v-tab>
       <v-tab>members</v-tab>
-      <v-tab>Tasks</v-tab>
+      <v-tab to="/transitions/tasks">Tasks</v-tab>
       <v-tab>assets</v-tab>
-      <v-tab>Meetings</v-tab>
+      <v-tab to="/transitions/meetings">Meetings</v-tab>
     </v-tabs>
   </div>
 </template>
+
+<script>
+
+export default {
+}
+</script>
 
 <style lang="scss">
 .toolbar {

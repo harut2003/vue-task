@@ -18,10 +18,10 @@
     </div>
     <v-row class="d-flex align-center justify-space-between">
       <v-col lg="5" md="12">
-        <h1>UI/UX Designer</h1>
+        <h1>{{ title || "UI/UX Designer" }}</h1>
       </v-col>
       <v-col md="12" lg="7" class="d-flex justify-end">
-        <ToolBar />
+        <ToolBar v-if="noTool" />
       </v-col>
     </v-row>
   </div>
@@ -31,6 +31,7 @@
 import ToolBar from "./ToolBar.vue";
 
 export default {
+  props: ["title", "noTool"],
   data: () => ({
     url: null,
   }),

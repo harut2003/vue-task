@@ -11,10 +11,28 @@ const routes = [
     component: () => import("../views/HomeView.vue"),
   },
   {
-    path: "/meetings",
+    path: "/transitions",
+    name: "transitions",
+    meta: { layout: "main", noTool: true },
+    // component: () => import("../views/MeetingsView.vue"),
+  },
+  {
+    path: "/transitions/meetings",
     name: "meetings",
-    meta: { layout: "main" },
+    meta: { layout: "main", noTool: true },
     component: () => import("../views/MeetingsView.vue"),
+  },
+  {
+    path: "/transitions/tasks",
+    name: "tasks",
+    meta: { layout: "main", noTool: true },
+    component: () => import("../views/TasksView.vue"),
+  },
+  {
+    path: "/transitions/add-task",
+    name: "addTask",
+    meta: { layout: "main", title: "ADD TASK", noTool: false },
+    component: () => import("../views/AddTask.vue"),
   },
 ];
 

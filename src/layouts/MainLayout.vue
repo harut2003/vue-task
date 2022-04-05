@@ -2,8 +2,8 @@
   <v-app class="d-flex flex-row" id="mainCont">
     <SideBar />
     <v-main>
-      <v-container class="py-8 px-6" fluid>
-        <NavBar />
+      <v-container class="py-8 px-12" fluid>
+        <NavBar :title="title" :noTool="noTool" />
         <router-view />
         <!-- <Footer /> -->
       </v-container>
@@ -17,6 +17,7 @@ import NavBar from "@/components/app/NavBar.vue";
 import Footer from "@/components/app/Footer.vue";
 
 export default {
+  props: ["title", "noTool"],
   name: "main-layout",
 
   components: {

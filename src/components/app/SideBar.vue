@@ -64,7 +64,7 @@ export default {
       drawer: true,
       items: [
         { title: "Home", icon: "mdi-home", to: "/" },
-        { title: "Transitions", icon: "mdi-refresh", to: "/meetings" },
+        { title: "Transitions", icon: "mdi-refresh", to: "/transitions" },
         { title: "Support", icon: "mdi-message-text" },
       ],
       mini: true,

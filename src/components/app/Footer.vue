@@ -22,13 +22,6 @@
 }
 .footer-btn {
   width: 441px;
-  &:not(&:nth-child(1)) {
-    color: white !important;
-  }
-  &:nth-child(2) {
-    background-color: #6d32a5 !important;
-    margin-left: 8px;
-  }
   &:nth-child(3) {
     background-color: #2b0f4d !important;
     margin-left: 8px;

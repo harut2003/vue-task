@@ -1,25 +1,28 @@
 <template>
   <div>
-    <hr />
-    <div class="d-flex justify-space-between align-center">
-      <!-- <input
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Search keywords or a project names"
-      /> -->
-      <v-text-field label="Main input"></v-text-field>
+    <v-form class="d-flex justify-space-between align-center mt-8">
+      <v-text-field label="Search keywords or a project names"></v-text-field>
       <v-col cols="12" sm="3">
         <v-select
           v-model="selected"
           :items="values"
           :menu-props="{ maxHeight: '400' }"
-          label="Select"
+          label="Priority"
           multiple
           persistent-hint
         ></v-select>
       </v-col>
-      <v-menu
+      <v-col cols="12" sm="3">
+        <v-select
+          v-model="selected"
+          :items="values"
+          :menu-props="{ maxHeight: '400' }"
+          label="Criticality"
+          multiple
+          persistent-hint
+        ></v-select>
+      </v-col>
+      <!-- <v-menu
         ref="menu"
         v-model="menu"
         :close-on-content-click="false"
@@ -48,10 +51,9 @@
           min="1950-01-01"
           @change="save"
         ></v-date-picker>
-      </v-menu>
-      <v-btn class="import-btn filters-btn">IMPORT</v-btn>
-      <v-btn class="filter-btn filters-btn">FILTER</v-btn>
-    </div>
+      </v-menu> -->
+      <v-btn class="filter-btn filters-btn">SEARCH</v-btn>
+    </v-form>
     <hr />
   </div>
 </template>
@@ -105,8 +107,14 @@ input {
   box-shadow: 0px 3px 16px #0000001a;
   width: 210px;
 }
+hr {
+  border-top: 1px solid gray;
+}
 .filter-btn {
   background-color: #2b0f4d !important;
   color: white !important;
+  height: 50px !important;
+  border-radius: 10px;
+  margin-left: 34px;
 }
 </style>
