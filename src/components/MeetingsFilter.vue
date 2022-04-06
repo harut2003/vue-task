@@ -1,11 +1,14 @@
 <template>
   <div>
     <v-form class="d-flex justify-space-between align-center mt-8">
-      <v-text-field label="Search keywords or a project names"></v-text-field>
+      <v-text-field
+        label="Search keywords or a project names"
+        v-model.trim="project"
+      ></v-text-field>
       <v-col cols="12" sm="3">
         <v-select
-          v-model="selected"
-          :items="values"
+          v-model="priority"
+          :items="rangeValues"
           :menu-props="{ maxHeight: '400' }"
           label="Priority"
           multiple
@@ -14,8 +17,8 @@
       </v-col>
       <v-col cols="12" sm="3">
         <v-select
-          v-model="selected"
-          :items="values"
+          v-model="circy"
+          :items="rangeValues"
           :menu-props="{ maxHeight: '400' }"
           label="Criticality"
           multiple
@@ -52,7 +55,9 @@
           @change="save"
         ></v-date-picker>
       </v-menu> -->
-      <v-btn class="filter-btn filters-btn">SEARCH</v-btn>
+      <v-btn @click="searchHandler" class="filter-btn filters-btn"
+        >SEARCH</v-btn
+      >
     </v-form>
     <hr />
   </div>
@@ -61,11 +66,13 @@
 <script>
 export default {
   data: () => ({
-    selected: [],
-    values: ["dfsds"],
+    priority: [],
+    circy: [],
+    rangeValues: ["High", "Normal", "Low"],
     activePicker: null,
     date: null,
     menu: false,
+    project: "",
   }),
   watch: {
     menu(val) {
@@ -75,6 +82,17 @@ export default {
   methods: {
     save(date) {
       this.$refs.menu.save(date);
+    },
+    searchHandler() {
+      this.$store.commit("searchRanges", {
+        priority: this.priority,
+        circy: this.circy,
+      });
+    },
+  },
+  watch: {
+    project(value) {
+      this.$store.commit("searchProject", value);
     },
   },
 };

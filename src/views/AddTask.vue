@@ -168,6 +168,7 @@ export default {
     },
     handleSubmit() {
       const formData = {
+        id: this.uid,
         description: this.description,
         project: this.project,
         priority: this.priority,

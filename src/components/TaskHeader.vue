@@ -1,16 +1,32 @@
 <template>
   <div>
     <div class="stat-container">
-      <div class="stat-line">
+      <div
+        class="stat-line"
+        :class="{
+          activeKnowledgeLine: clickedElem === 'KNOWLEDGE TRANSFER',
+          activeProdLine: clickedElem === 'PRODUCTION PARALLEL',
+          activeExecLine: clickedElem === 'LIVE EXECUTION',
+        }"
+      >
         <div class="statistics d-flex">
           <div
             v-for="stat in statistics"
             :key="stat.title"
             class="stat"
             :class="{
-              active: stat.title === 'TASKS',
+              activeTask: clickedElem === 'TASKS' && stat.title === clickedElem,
+              activeKnowledge:
+                clickedElem === 'KNOWLEDGE TRANSFER' &&
+                stat.title === clickedElem,
+              activeProd:
+                clickedElem === 'PRODUCTION PARALLEL' &&
+                stat.title === clickedElem,
+              activeExec:
+                clickedElem === 'LIVE EXECUTION' && stat.title === clickedElem,
               prod: stat.title === 'PRODUCTION PARALLEL',
             }"
+            @click="clickedElem = stat.title"
           >
             <v-icon v-text="stat.icon"></v-icon>
             <div class="title-count">
@@ -31,6 +47,7 @@ import MeetingsFilter from "@/components/MeetingsFilter.vue";
 export default {
   data() {
     return {
+      clickedElem: "TASKS",
       statistics: [
         {
           title: "TASKS",
@@ -81,6 +98,7 @@ export default {
   border-bottom: 10px solid #f5f5f6;
 
   &::after {
+    transition: all 2s;
     content: "";
     display: block;
     border-bottom: 10px solid #1fc599;
@@ -89,12 +107,25 @@ export default {
     border-radius: 10px;
     margin-top: 20px;
   }
+  &.activeKnowledgeLine::after {
+    border-bottom: 10px solid #43bccd;
+    max-width: 45%;
+  }
+  &.activeProdLine::after {
+    border-bottom: 10px solid #6d32a5;
+    max-width: 72%;
+  }
+  &.activeExecLine::after {
+    border-bottom: 10px solid #f53361;
+    max-width: 100%;
+  }
 }
 .statistics {
   .stat {
     padding-right: 12%;
     display: flex;
     .title-count {
+      cursor: pointer;
       margin-left: 15px;
     }
   }
@@ -109,15 +140,44 @@ export default {
     color: #a3a6b9;
   }
   .v-icon {
+    cursor: pointer;
     margin-top: -10px;
     font-size: 50px;
     color: #a3a6b9;
   }
 }
-.active {
+.activeTask {
   h3,
   .v-icon {
     color: #1fc599;
+  }
+  span {
+    color: #05081d;
+  }
+}
+
+.activeKnowledge {
+  h3,
+  .v-icon {
+    color: #43bccd;
+  }
+  span {
+    color: #05081d;
+  }
+}
+.activeProd {
+  h3,
+  .v-icon {
+    color: #6d32a5;
+  }
+  span {
+    color: #05081d;
+  }
+}
+.activeExec {
+  h3,
+  .v-icon {
+    color: #f53361;
   }
   span {
     color: #05081d;
