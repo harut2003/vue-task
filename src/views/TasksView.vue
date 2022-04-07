@@ -8,9 +8,14 @@
             <v-icon left> mdi-plus </v-icon>
             ADD TASKS
           </v-btn>
-          <v-btn tile color="#1fc599" class="select-all">
+          <v-btn
+            @click="selectAll"
+            tile
+            :color="isSelectButton ? '#1fc599' : 'primary'"
+            class="select-all"
+          >
             <v-icon left> mdi-check </v-icon>
-            SELECT ALL
+            {{ isSelectButton ? "SELECT ALL" : "UNSELECT ALL" }}
           </v-btn>
           <v-btn disabled tile color="#1fc599" class="select-all">
             <v-icon left> mdi-thumb-up-outline </v-icon>
@@ -55,7 +60,7 @@
             <!-- <p>{{ task.date | moment }}</p> -->
             <div class="approv-checkbox">
               <span>Submitted for approval</span>
-              <v-checkbox value></v-checkbox>
+              <v-checkbox v-model="selected" :value="task.id"></v-checkbox>
             </div>
           </div>
           <div class="title-buttons">
@@ -157,6 +162,8 @@ export default {
       openDeleteModal: false,
       choosenDeleteTask: null,
       choosenTask: null,
+      selected: [],
+      isSelectButton: true,
     };
   },
   methods: {
@@ -167,6 +174,14 @@ export default {
     openingDelete(id) {
       this.openDeleteModal = true;
       this.choosenDeleteTask = id;
+    },
+    selectAll() {
+      if (this.isSelectButton) {
+        this.tasks.forEach((task) => this.selected.push(task.id));
+      } else {
+        this.selected = [];
+      }
+      this.isSelectButton = !this.isSelectButton;
     },
   },
   computed: {
@@ -186,16 +201,6 @@ export default {
       return moment(date).format("MMM Do, YYYY").toUpperCase();
     },
   },
-  // watch: {
-  //   filteredTasks(value) {
-  //     // if (!value) {
-  //     //   this.tasks = this.$store.getters.tasks;
-  //     //   return;
-  //     // }
-  //     this.tasks = [...value];
-  //     console.log(this.tasks);
-  //   },
-  // },
   components: {
     TaskHeader,
     TaskEditModal,

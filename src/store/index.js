@@ -35,7 +35,6 @@ export default new Vuex.Store({
   },
   mutations: {
     addTask(state, newTask) {
-      console.log(newTask);
       state.tasks = [...state.tasks, newTask];
     },
     searchProject(state, value) {
@@ -46,32 +45,30 @@ export default new Vuex.Store({
       state.filteredTasks = state.tasks.filter((obj) =>
         obj.project.includes(value)
       );
-      console.log(state.filteredTasks);
     },
     searchRanges(state, { priority, circy }) {
-      const rangesValues = {
-        low: priority.includes("Low"),
-        normal: priority.includes("Normal"),
-        high: priority.includes("High"),
-      };
-      state.filteredTasks = state.tasks.filter((task) => {
-        for (const key in rangesValues) {
-          if (priority.includes("Low") && task.priority < 33) {
-            return true;
-          }
+      const prioritySelected = filterPriorityCircy(
+        priority,
+        state.tasks,
+        "priority"
+      );
+      const circySelected = filterPriorityCircy(
+        circy,
+        state.tasks,
+        "criticality"
+      );
+      const filtered = [];
+      for (let i = 0; i < prioritySelected.length; i++) {
+        for (let j = 0; j < circySelected.length; j++) {
           if (
-            priority.includes("Normal") &&
-            task.priority > 33 &&
-            task.priority <= 66
+            prioritySelected[i]?.id === circySelected[i]?.id &&
+            !filtered.includes(prioritySelected[i])
           ) {
-            return true;
+            filtered.push(circySelected[i]);
           }
-          if (priority.includes("High") && task.priority > 66) {
-            return true;
-          }
-          return false;
         }
-      });
+      }
+      state.filteredTasks = [...filtered];
     },
     editTask(state, { id, form }) {
       const editingTask = state.tasks.find((task) => task.id === id);
@@ -87,3 +84,22 @@ export default new Vuex.Store({
   actions: {},
   modules: {},
 });
+
+function filterPriorityCircy(range, tasks, rangeName) {
+  return tasks.filter((task) => {
+    if (range.includes("Low") && task[rangeName] < 33) {
+      return true;
+    }
+    if (
+      range.includes("Normal") &&
+      task[rangeName] > 33 &&
+      task[rangeName] <= 66
+    ) {
+      return true;
+    }
+    if (range.includes("High") && task[rangeName] > 66) {
+      return true;
+    }
+    return false;
+  });
+}
