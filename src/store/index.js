@@ -25,15 +25,53 @@ export default new Vuex.Store({
         benef: "Admin",
       },
     ],
+    averageData: [],
+    agreedData: [],
+    dougData: [3, 2],
+    dougLabels: [
+      { label: `Completed due date`, value: "complited" },
+      { label: `Nearing due date`, value: "nearing" },
+    ],
+    appexPieLabels: [
+      { label: `Reviewed tasks`, value: "reviewed" },
+      { label: `Not reviewed tasks`, value: "notReviewed" },
+    ],
+    selectedOption: "",
     filteredTasks: null,
+    cycleData: [26, 18],
   },
   getters: {
     tasks(state) {
       return state.tasks;
     },
     filteredTasks: (state) => state.filteredTasks,
+    data: (state) =>
+      state.selectedOption === "average" ? state.averageData : state.agreedData,
+    averageData: (state) => state.averageData,
+    agreedData: (state) => state.agreedData,
+    dougData: (state) => state.dougData,
+    cycleData: (state) => state.cycleData,
+    dougLabels: (state) => state.dougLabels,
+    appexPieLabels: (state) => state.appexPieLabels,
   },
   mutations: {
+    addDougData(state, { formData, chart }) {
+      if (chart === "doug") {
+        state.dougData = [...formData];
+      } else if (chart === "cycle") {
+        state.cycleData = [...formData];
+      }
+    },
+    setOption(state, opt) {
+      state.selectedOption = opt;
+    },
+    addData(state, newData) {
+      if (state.selectedOption === "average") {
+        state.averageData = [...newData];
+      } else {
+        state.agreedData = [...newData];
+      }
+    },
     addTask(state, newTask) {
       state.tasks = [...state.tasks, newTask];
     },

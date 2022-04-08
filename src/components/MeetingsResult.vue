@@ -153,18 +153,9 @@ export default {
       },
     ],
   }),
-  watch: {
-    selected(value) {
-      console.log(value);
-    },
-    desserts(value) {
-      console.log("des", value);
-    },
-  },
   methods: {
     toggleSelectAll() {
       this.isAllSelected = !this.isAllSelected;
-      console.log(this.isAllSelected);
       this.desserts = this.desserts.map((obj) => {
         obj.options.check = this.isAllSelected;
         return obj;
@@ -198,7 +189,6 @@ export default {
       this.desserts = this.desserts.map((obj, i) => {
         this.selected.forEach((sel) => {
           if (sel.options.id === obj.options.id) {
-            console.log(this.selected[i]?.options.id);
             obj.status = add === "scoped" ? "Scoped" : "Unscoped";
             obj.options.check = false;
           }
@@ -212,7 +202,6 @@ export default {
     toggleCheckbox(id) {
       const item = this.desserts.find((obj) => obj.options.id === id);
       if (!item.options.check) {
-        console.log("mto");
         this.selected = this.selected.filter((obj) => obj.options.id !== id);
       } else {
         const item = this.desserts.find((obj) => id === obj.options.id);

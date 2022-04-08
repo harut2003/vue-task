@@ -70,9 +70,12 @@ export default {
       default: () => [],
     },
   },
-  data() {
-    return {
-      chartData: {
+  computed: {
+    // transitionData() {
+    //   return this.$store.getters.transitionData;
+    // },
+    chartData() {
+      return {
         labels: [
           "tasks",
           "knowledge transfer",
@@ -90,13 +93,18 @@ export default {
               "#f53361",
               "#f2a201",
             ],
-            data: [1, 5, 4, 3, 2],
+            data: this.$store.getters.data,
             barThickness: 50,
             borderRadius: 10,
             borderSkipped: false,
           },
         ],
-      },
+      };
+    },
+  },
+  data() {
+    return {
+      //  chartData: {},
       chartOptions: {
         plugins: {
           legend: {

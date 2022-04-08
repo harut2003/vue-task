@@ -32,9 +32,20 @@ export default {
     Doughnut,
   },
   computed: {
-    // chartData() {
-    //   return this.chartData;
-    // },
+    chartData() {
+      const dataValues = this.$store.getters.dougData;
+      return {
+        datasets: [
+          {
+            backgroundColor: ["#43bccd", "#6d32a5"],
+            data: [...dataValues],
+          },
+        ],
+        labels: this.$store.getters.dougLabels.map(
+          (lbl, i) => `${lbl.label} (${dataValues[i]})`
+        ),
+      };
+    },
   },
   props: {
     chartId: {
@@ -67,21 +78,7 @@ export default {
     },
   },
   data() {
-    const dataValues = [3, 2];
     return {
-      chartData: {
-        datasets: [
-          {
-            backgroundColor: ["#43bccd", "#6d32a5"],
-            data: [...dataValues],
-          },
-        ],
-        labels: [
-          `Completed due date (${dataValues[0]})`,
-          `Nearing due date (${dataValues[1]})`,
-        ],
-      },
-
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -102,7 +99,6 @@ export default {
           legendMargin: {
             id: "legendMargin",
             beforeInit: function (chart, options) {
-              console.log(chart);
               chart.legend.afterFit = function () {
                 this.height = this.height + 80;
               };

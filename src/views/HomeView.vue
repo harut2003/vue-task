@@ -3,15 +3,28 @@
     <div class="bar-circle">
       <div class="chart-container bar-container">
         <div class="title-container">
-          <v-btn @click="openModal = true">Add data</v-btn>
+          <v-btn @click="openModal = true" v-if="selectedOption"
+            >Add data</v-btn
+          >
           <h4>transitions state</h4>
-          <v-select class="select status-sel" label="All" dense></v-select>
+          <v-select
+            v-model="selectedOption"
+            class="select status-sel"
+            label="All"
+            :items="items"
+            item-value="value"
+            item-text="name"
+            dense
+          ></v-select>
         </div>
 
-        <BarChart />
+        <BarChart v-if="selectedOption" />
       </div>
       <div class="chart-container doug-container">
         <div class="title-container">
+          <v-btn @click="(dougOpenModal = true), (chart = 'doug')"
+            >Add data</v-btn
+          >
           <h4>due date</h4>
         </div>
 
@@ -22,22 +35,26 @@
       <div class="title-container">
         <h4>cycle time</h4>
       </div>
-      <LineChart />
+      <LineChart v-if="selectedOption" />
     </div>
     <div class="chart-container">
       <div class="title-container">
+        <v-btn @click="(dougOpenModal = true), (chart = 'cycle')"
+          >Add data</v-btn
+        >
+
         <h4>cycle time</h4>
       </div>
-      <apexchart
-        type="pie"
-        width="380"
-        :options="chartOptions"
-        :series="series"
-      ></apexchart>
+      <AppexPie />
     </div>
     <TransitionChartModal
       :openModal="openModal"
       @closeModal="openModal = false"
+    />
+    <DoughnutChartModal
+      :openModal="dougOpenModal"
+      @closeModal="dougOpenModal = false"
+      :chart="chart"
     />
   </div>
 </template>
@@ -46,53 +63,37 @@
 import BarChart from "@/components/BarChart.vue";
 import DoughnutChart from "@/components/DoughnutChart.vue";
 import LineChart from "@/components/LineChart.vue";
-import VueApexCharts from "vue-apexcharts";
 import TransitionChartModal from "@/components/TransitionChartModal.vue";
+import DoughnutChartModal from "@/components/DoughnutChartModal.vue";
+import AppexPie from "@/components/AppexPie.vue";
 
 const dataValues = [3, 2];
 export default {
   data() {
     return {
+      chart: null,
+      selectedOption: null,
+      items: [
+        { value: "average", name: "Average Cycle Time" },
+        { value: "agreed", name: "Agreed TAT" },
+      ],
       openModal: false,
-      series: [26, 18],
-      chartOptions: {
-        chart: {
-          width: 380,
-          type: "pie",
-        },
-        labels: ["Reviewed tasks (26)", "Not reviewed tasks (18)"],
-        legend: {
-          position: "left",
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          show: false,
-        },
-        responsive: [
-          {
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: 200,
-              },
-              legend: {
-                position: "bottom",
-              },
-            },
-          },
-        ],
-      },
+      dougOpenModal: false,
     };
+  },
+  watch: {
+    selectedOption(opt) {
+      this.$store.commit("setOption", opt);
+    },
   },
   name: "Home",
   components: {
     BarChart,
     DoughnutChart,
     LineChart,
-    apexchart: VueApexCharts,
     TransitionChartModal,
+    DoughnutChartModal,
+    AppexPie,
   },
 };
 </script>

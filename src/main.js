@@ -6,9 +6,11 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import "@fortawesome/fontawesome-free/css/all.css";
 import UniqueId from "vue-unique-id";
+import VueCompositionAPI from "@vue/composition-api";
 
 Vue.config.productionTip = false;
 Vue.use(UniqueId);
+Vue.use(VueCompositionAPI);
 new Vue({
   router,
   store,

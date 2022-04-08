@@ -71,9 +71,9 @@ export default {
       default: () => [],
     },
   },
-  data() {
-    return {
-      chartData: {
+  computed: {
+    chartData() {
+      return {
         labels: [
           "TASKS APPROVING",
           "knowledge transfer",
@@ -84,7 +84,7 @@ export default {
           {
             label: "Average Cycle time",
             backgroundColor: "#ffffff",
-            data: [8, 9, 26, 10],
+            data: this.$store.getters.averageData,
             borderWidth: 6,
             borderColor: "#6d32a5",
           },
@@ -93,10 +93,14 @@ export default {
             borderColor: "#43bccd",
             borderWidth: 6,
             backgroundColor: "#ffffff",
-            data: [13, 5, 15, 17],
+            data: this.$store.getters.agreedData,
           },
         ],
-      },
+      };
+    },
+  },
+  data() {
+    return {
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,

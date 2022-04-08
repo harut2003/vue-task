@@ -1,5 +1,9 @@
 <template>
-  <v-dialog v-model="openModal" width="700">
+  <v-dialog
+    v-model="openModal"
+    width="700"
+    @click:outside="$emit('closeModal')"
+  >
     <v-card>
       <v-card-title class="text-h5 primary"> Edit task </v-card-title>
       <v-card-text>
